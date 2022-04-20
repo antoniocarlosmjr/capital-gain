@@ -1,0 +1,14 @@
+{
+    "name": "root/www",
+    "autoload": {
+        "psr-4": {
+            "Root\\Www\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Future Nubanker"
+        }
+    ],
+    "require": {}
+}

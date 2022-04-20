@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+    # PHP service
+    app:
+        build: .
+        container_name: capital-gains-app
+        working_dir: /var/www/
+        volumes:
+            - ./src:/var/www
+        networks:
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge
