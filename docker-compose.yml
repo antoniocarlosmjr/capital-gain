@@ -3,7 +3,7 @@ services:
     # PHP service
     app:
         build: .
-        container_name: capital-gains-app
+        container_name: capital-gain-app
         working_dir: /var/www/
         volumes:
             - ./src:/var/www
