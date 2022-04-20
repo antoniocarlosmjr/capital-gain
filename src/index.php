@@ -1,9 +1,12 @@
 <?php
+require_once __DIR__.'/vendor/autoload.php';
 
-echo "teste113";
+echo "teste123";
 
-require __DIR__.'/vendor/autoload.php';
+while ($line = fgets(STDIN)) {
+    $line = strtolower(trim($line));
+    $data = json_decode(strtolower(trim($line)), true);
 
-$soluction = new Solution();
-$soluction->imprimirAlgoTela();
-
+    $response = 'teste 122';
+    fwrite(STDOUT, $response);
+}

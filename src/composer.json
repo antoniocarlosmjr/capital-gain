@@ -8,12 +8,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Root\\Www\\": "app/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Root\\Www\\Tests\\": "tests/"
+            "Tests\\": "tests/"
         }
     },
     "authors": [
