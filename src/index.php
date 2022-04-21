@@ -26,5 +26,7 @@ while (true) {
     $taxesArrayList[] = $taxFactory->createTaxFromArray($taxList);
 }
 
-$jsonTaxes = $taxTransformer->toStringTax($taxesArrayList);
-fwrite(STDOUT, $jsonTaxes);
+$arrayTaxes = $taxTransformer->transformTax($taxesArrayList);
+foreach ($arrayTaxes as $tax) {
+    fwrite(STDOUT, json_encode($tax) . PHP_EOL);
+}

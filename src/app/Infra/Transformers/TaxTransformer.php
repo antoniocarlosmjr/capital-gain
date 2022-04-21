@@ -4,13 +4,18 @@ namespace App\Infra\Transformers;
 
 class TaxTransformer
 {
-    public function toStringTax(array $taxesArrayList): string
+    public function transformTax(array $taxesArrayList): array
     {
         $arrayFormated = [];
-        foreach ($taxesArrayList as $arrayList => $values) {
+        foreach ($taxesArrayList as $indexArrayList => $taxArrayList) {
+            $taxes = $taxArrayList->getAllTaxes();
+            $taxesOfOperation = [];
 
+            foreach ($taxes as $index => $taxEntity) {
+                $taxesOfOperation[] = ['tax' => $taxEntity->getTax()];
+            }
+            $arrayFormated[] = $taxesOfOperation;
         }
-
-        return json_encode($arrayFormated);
+        return $arrayFormated;
     }
 }
