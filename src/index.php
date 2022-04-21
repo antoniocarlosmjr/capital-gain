@@ -1,12 +1,30 @@
 <?php
+
+use App\Application\Services\OperationService;
+use App\Infra\Factory\OperationFactory;
+use App\Infra\Factory\TaxFactory;
+use App\Infra\Transformers\TaxTransformer;
+
 require_once __DIR__.'/vendor/autoload.php';
 
-echo "teste123";
+$operationFactory = new OperationFactory();
+$operationService = new OperationService();
+$taxFactory = new TaxFactory();
+$taxTransformer = new TaxTransformer();
 
-while ($line = fgets(STDIN)) {
+while (true) {
+    $line = fgets(STDIN);
     $line = strtolower(trim($line));
-    $data = json_decode(strtolower(trim($line)), true);
+    $operation = json_decode($line, true);
 
-    $response = 'teste 122';
-    fwrite(STDOUT, $response);
+    if ($line == '') {
+        break;
+    }
+
+    $operationArrayList = $operationFactory->createOperationFromArray($operation);
+    $taxList = $operationService->calculateTax($operationArrayList);
+    $taxesArrayList[] = $taxFactory->createTaxFromArray($taxList);
 }
+
+$jsonTaxes = $taxTransformer->toStringTax($taxesArrayList);
+fwrite(STDOUT, $jsonTaxes);
