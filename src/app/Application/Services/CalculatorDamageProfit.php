@@ -2,7 +2,12 @@
 
 namespace App\Application\Services;
 
-class CalculatorDamageProfit
-{
+use App\Application\Services\Contracts\CalculatorDamageProfitInterface;
 
+class CalculatorDamageProfit implements CalculatorDamageProfitInterface
+{
+    public function calculate()
+    {
+        
+    }
 }

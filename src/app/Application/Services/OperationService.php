@@ -2,14 +2,38 @@
 
 namespace App\Application\Services;
 
+use App\Application\Services\Contracts\CalculatorAveragePriceInterface;
+use App\Application\Services\Contracts\CalculatorDamageProfitInterface;
+use App\Application\Services\Contracts\CalculatorTaxInterface;
+use App\Application\Services\Contracts\OperationServiceInterface;
 use App\Domain\Entities\Operation\OperationArrayList;
+use App\Enumerators\TypesOperationEnum;
 
-class OperationService
+class OperationService implements OperationServiceInterface
 {
-    public function calculateTax(OperationArrayList $listOperation): array
+    public function __construct(
+        protected CalculatorAveragePriceInterface $calculatorAveragePrice,
+        protected CalculatorDamageProfitInterface $calculatorDamageProfit,
+        protected CalculatorTaxInterface $calculatorTax
+    )
     {
-        // percorrer a lista de operacoes e calcular a taxa por cada operacao
-        // cumulativa
-        return [10.44, 55.55, 66.33];
+    }
+
+    public function calculateTaxOperations(OperationArrayList $listOperation): array
+    {
+        $tax = [];
+        $averagePrice = 0;
+        foreach ($listOperation->getAllOperations() as $operationEntity) {
+            if ($operationEntity->getType() == TypesOperationEnum::BUY) {
+                $averagePrice = $this->calculatorAveragePrice->calculate($operationEntity);
+            }
+
+            $tax[] = $this->calculatorTax->calculate($operationEntity, $averagePrice);
+        }
+
+        print_r($tax);
+        exit;
+
+        return $tax;
     }
 }
