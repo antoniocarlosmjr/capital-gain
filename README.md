@@ -53,8 +53,8 @@ Step 4: use the command `docker exec -it capital-gain-app php index.php` for ini
 
 After configure of project, execute the command: `docker exec -it capital-gain-app php index.php` for open CLI in your prompt and put your inputs
 
-(image here)
-_#ForAllToSee: in the image above we have one prompt of command with use in the first line the command above said and 
+![image](https://user-images.githubusercontent.com/26749585/164738740-f6f61175-0f97-4551-8a3e-207cace45fb1.png)
+> _#ForAllToSee: in the image above we have one prompt of command with use in the first line the command above said and 
 one input in the line with `[{"operation":"buy", "unit-cost":10.00, "quantity": 100},{"operation":"sell", "unit-cost":15.00, "quantity": 50},{"operation":"sell", "unit-cost":15.00, "quantity": 50}]
 `. Then we have a empty line and after one response of our prompt `[{"tax":0},{"tax":0},{"tax":0}]
 `._
