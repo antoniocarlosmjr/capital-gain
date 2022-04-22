@@ -24,10 +24,12 @@ class OperationService implements OperationServiceInterface
         $tax = [];
         $averagePrice = 0;
         foreach ($listOperation->getAllOperations() as $operationEntity) {
-            $this->calculatorAveragePrice->updateQuantityActions($operationEntity);
-
             if ($operationEntity->getType() == TypesOperationEnum::BUY) {
                 $averagePrice = $this->calculatorAveragePrice->calculate($operationEntity);
+            }
+
+            if ($operationEntity->getType() == TypesOperationEnum::SELL) {
+                $this->calculatorAveragePrice->lessQuantityActions($operationEntity);
             }
 
             $tax[] = $this->calculatorTax->calculate($operationEntity, $averagePrice);

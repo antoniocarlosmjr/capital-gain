@@ -18,6 +18,8 @@ class CalculatorTax implements CalculatorTaxInterface
             return new TaxEntity(0);
         }
 
+        return new TaxEntity(0);
+
         // calcular taxa para vendas aqui
         // se não for, paga taxa
 
