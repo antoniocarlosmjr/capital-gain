@@ -3,7 +3,6 @@
 namespace App\Application\Services;
 
 use App\Application\Services\Contracts\CalculatorAveragePriceInterface;
-use App\Application\Services\Contracts\CalculatorLossProfitInterface;
 use App\Application\Services\Contracts\CalculatorTaxInterface;
 use App\Application\Services\Contracts\OperationServiceInterface;
 use App\Domain\Entities\Operation\OperationArrayList;
@@ -13,7 +12,6 @@ class OperationService implements OperationServiceInterface
 {
     public function __construct(
         private CalculatorAveragePriceInterface $calculatorAveragePrice,
-        private CalculatorLossProfitInterface   $calculatorDamageProfit,
         private CalculatorTaxInterface          $calculatorTax
     )
     {
