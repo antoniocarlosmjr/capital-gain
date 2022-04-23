@@ -31,5 +31,4 @@ class OperationEntity
     {
         return $this->unitCost * $this->quantity;
     }
-
 }

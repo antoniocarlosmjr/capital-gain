@@ -8,6 +8,6 @@ class OperationQuantityInvalidException extends Exception
 {
     public function __construct(string $message = "Quantity is invalid")
     {
-        parent::__construct();
+        parent::__construct($message);
     }
 }

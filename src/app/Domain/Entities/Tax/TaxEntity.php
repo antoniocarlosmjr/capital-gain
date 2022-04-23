@@ -12,6 +12,6 @@ class TaxEntity
 
     public function getTax(): float
     {
-        return sprintf("%.2f", $this->value);
+        return $this->value;
     }
 }

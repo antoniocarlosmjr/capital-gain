@@ -4,11 +4,10 @@ namespace App\Domain\Entities\Tax;
 
 class TaxArrayList
 {
-    private array $taxes;
-
-    public function __construct()
+    public function __construct(
+        private array $taxes = []
+    )
     {
-        $this->taxes = [];
     }
 
     public function addTax(TaxEntity $newTax): void

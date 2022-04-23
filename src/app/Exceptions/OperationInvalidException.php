@@ -8,6 +8,6 @@ class OperationInvalidException extends Exception
 {
     public function __construct(string $message = "Operation invalid")
     {
-        parent::__construct();
+        parent::__construct($message);
     }
 }
