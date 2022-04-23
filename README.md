@@ -38,7 +38,7 @@ Step 3: use the command `docker exec -it capital-gain-app composer install` for 
 └── README.md
 ```
 
-- `app` here is where we have all logic of business basead in domain driven design and clean architecture.
+- `app` here is where we have all logic of business inspired in domain driven design (DDD) and clean architecture.
 - `tests` is a folder that have all tests of this project.
 - `vendor` here is where we have all library of dependencies and file `autoload.php` that helps autoload classes.
 - `.gitignore` here we have the files that are ignored for versioning.
