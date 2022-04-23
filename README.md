@@ -65,6 +65,6 @@ one input in the line with `[{"operation":"buy", "unit-cost":10.00, "quantity": 
 
 For to execute all tests in this project in prompt of command you need to execute the command `docker exec -it capital-gain-app ./vendor/bin/phpunit tests` and will see the image looks like this:
 
-(image here)
+![image](https://user-images.githubusercontent.com/26749585/164943976-0760a69e-20f5-459f-92d6-1f073b322853.png)
 > _#ForAllToSee: in the image above we have one prompt of command with use in the first line the command said for execute the tests. Then in the next line we have a information that time and memory and the information saying `OK (24 tests, 32 assertions)
 `_.
