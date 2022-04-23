@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Infra\Factory;
 
-use App\Domain\Entities\Operation\OperationArrayList;
 use App\Domain\Entities\Operation\OperationEntity;
 use App\Enumerators\TypesOperationEnum;
 use App\Infra\Factory\OperationFactory;
