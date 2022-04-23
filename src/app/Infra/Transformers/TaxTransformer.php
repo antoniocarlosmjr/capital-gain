@@ -2,20 +2,18 @@
 
 namespace App\Infra\Transformers;
 
+use App\Domain\Entities\Tax\TaxArrayList;
+
 class TaxTransformer
 {
-    public function transformTax(array $taxesArrayList): array
+    public function transformTax(TaxArrayList $taxesArrayList): array
     {
+        $allTaxes = $taxesArrayList->getAllTaxes();
         $arrayFormated = [];
-        foreach ($taxesArrayList as $indexArrayList => $taxArrayList) {
-            $taxes = $taxArrayList->getAllTaxes();
-            $taxesOfOperation = [];
-
-            foreach ($taxes as $index => $taxEntity) {
-                $taxesOfOperation[] = ['tax' => $taxEntity->getTax()];
-            }
-            $arrayFormated[] = $taxesOfOperation;
+        foreach ($allTaxes as $taxEntity) {
+            $arrayFormated[] = ['tax' => $taxEntity->getTax()];
         }
+
         return $arrayFormated;
     }
 }

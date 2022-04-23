@@ -6,6 +6,7 @@ use App\Application\Services\Contracts\CalculatorAveragePriceInterface;
 use App\Application\Services\Contracts\CalculatorTaxInterface;
 use App\Application\Services\Contracts\OperationServiceInterface;
 use App\Domain\Entities\Operation\OperationArrayList;
+use App\Domain\Entities\Tax\TaxArrayList;
 use App\Enumerators\TypesOperationEnum;
 
 class OperationService implements OperationServiceInterface
@@ -17,9 +18,9 @@ class OperationService implements OperationServiceInterface
     {
     }
 
-    public function calculateTaxOperations(OperationArrayList $listOperation): array
+    public function calculateTaxOperations(OperationArrayList $listOperation): TaxArrayList
     {
-        $tax = [];
+        $arrayListTax = new TaxArrayList();
         $averagePrice = 0;
         foreach ($listOperation->getAllOperations() as $operationEntity) {
             if ($operationEntity->getType() == TypesOperationEnum::BUY) {
@@ -30,9 +31,10 @@ class OperationService implements OperationServiceInterface
                 $this->calculatorAveragePrice->lessQuantityActions($operationEntity);
             }
 
-            $tax[] = $this->calculatorTax->calculate($operationEntity, $averagePrice)->getTax();
+            $tax = $this->calculatorTax->calculate($operationEntity, $averagePrice);
+            $arrayListTax->addTax($tax);
         }
 
-        return $tax;
+        return $arrayListTax;
     }
 }

@@ -5,9 +5,9 @@ namespace App\Domain\Entities\Operation;
 class OperationEntity
 {
     public function __construct(
-        protected string $type,
-        protected float $unitCost,
-        protected int $quantity
+        private string $type,
+        private float $unitCost,
+        private int $quantity
     )
     {
     }
