@@ -20,7 +20,7 @@ class CalculatorAveragePrice implements CalculatorAveragePriceInterface
     {
         $divisor = (($this->quantityActions * $this->averagePrice) + $operationEntity->getTotalOperation());
         $dividend = ($this->quantityActions + $operationEntity->getQuantity());
-        $this->averagePrice =  $divisor / $dividend;
+        $this->averagePrice =  round(($divisor / $dividend), 2);
         $this->quantityActions += $operationEntity->getQuantity();
 
         return $this->averagePrice;

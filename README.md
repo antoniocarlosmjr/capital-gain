@@ -28,6 +28,7 @@ Step 4: use the command `docker exec -it capital-gain-app php index.php` for ini
 │         └── Enumerators
 │         └── Exceptions
 │         └── Infra
+│    ├── tests
 │    ├── vendor
 │    ├── .gitignore
 │    ├── composer.json
@@ -40,6 +41,7 @@ Step 4: use the command `docker exec -it capital-gain-app php index.php` for ini
 ```
 
 - `app` here is where we have all logic of business basead in domain driven design and clean architecture.
+- `tests` is a folder that have all unit tests of this program.
 - `vendor` here is where we have all library of dependencies and file `autoload.php` that helps autoload classes.
 - `.gitignore` here we have the files that are ignored for versioning.
 - `composer.json` is the file that define our dependencies.
