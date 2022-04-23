@@ -3,7 +3,7 @@
 namespace App\Application\Services;
 
 use App\Application\Services\Contracts\CalculatorAveragePriceInterface;
-use App\Application\Services\Contracts\CalculatorDamageProfitInterface;
+use App\Application\Services\Contracts\CalculatorLossProfitInterface;
 use App\Application\Services\Contracts\CalculatorTaxInterface;
 use App\Application\Services\Contracts\OperationServiceInterface;
 use App\Domain\Entities\Operation\OperationArrayList;
@@ -12,9 +12,9 @@ use App\Enumerators\TypesOperationEnum;
 class OperationService implements OperationServiceInterface
 {
     public function __construct(
-        protected CalculatorAveragePriceInterface $calculatorAveragePrice,
-        protected CalculatorDamageProfitInterface $calculatorDamageProfit,
-        protected CalculatorTaxInterface $calculatorTax
+        private CalculatorAveragePriceInterface $calculatorAveragePrice,
+        private CalculatorLossProfitInterface   $calculatorDamageProfit,
+        private CalculatorTaxInterface          $calculatorTax
     )
     {
     }

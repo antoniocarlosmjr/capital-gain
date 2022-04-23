@@ -7,13 +7,18 @@ use App\Domain\Entities\Operation\OperationEntity;
 
 class CalculatorAveragePrice implements CalculatorAveragePriceInterface
 {
-    private float $averagePrice = 0;
-    private int $quantityActions = 0;
+    private float $averagePrice;
+    private int $quantityActions;
+
+    public function __construct()
+    {
+        $this->averagePrice = 0;
+        $this->quantityActions = 0;
+    }
 
     public function calculate(OperationEntity $operationEntity): float
     {
-        $totalValueOperation = $operationEntity->getUnitCost() * $operationEntity->getQuantity();
-        $divisor = (($this->quantityActions * $this->averagePrice) + $totalValueOperation);
+        $divisor = (($this->quantityActions * $this->averagePrice) + $operationEntity->getTotalOperation());
         $dividend = ($this->quantityActions + $operationEntity->getQuantity());
         $this->averagePrice =  $divisor / $dividend;
         $this->quantityActions += $operationEntity->getQuantity();

@@ -1,7 +1,7 @@
 <?php
 
 use App\Application\Services\CalculatorAveragePrice;
-use App\Application\Services\CalculatorDamageProfit;
+use App\Application\Services\CalculatorLossProfit;
 use App\Application\Services\CalculatorTax;
 use App\Application\Services\OperationService;
 use App\Infra\Factory\OperationFactory;
@@ -13,7 +13,7 @@ require_once __DIR__.'/vendor/autoload.php';
 $operationFactory = new OperationFactory();
 $operationService = new OperationService(
     new CalculatorAveragePrice(),
-    new CalculatorDamageProfit(),
+    new CalculatorLossProfit(),
     new CalculatorTax()
 );
 $taxFactory = new TaxFactory();

@@ -2,8 +2,6 @@
 
 namespace App\Domain\Entities\Tax;
 
-use App\Domain\Entities\Operation\OperationEntity;
-
 class TaxArrayList
 {
     private array $taxes;

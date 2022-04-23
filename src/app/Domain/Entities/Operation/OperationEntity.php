@@ -26,4 +26,10 @@ class OperationEntity
     {
         return $this->quantity;
     }
+
+    public function getTotalOperation(): float
+    {
+        return $this->unitCost * $this->quantity;
+    }
+
 }

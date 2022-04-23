@@ -2,7 +2,7 @@
 
 namespace App\Application\Services\Contracts;
 
-interface CalculatorDamageProfitInterface
+interface CalculatorLossProfitInterface
 {
     public function calculate();
 }

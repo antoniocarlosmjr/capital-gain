@@ -5,13 +5,13 @@ namespace App\Domain\Entities\Tax;
 class TaxEntity
 {
     public function __construct(
-        protected float $valueOfTax,
+        protected float $value,
     )
     {
     }
 
     public function getTax(): float
     {
-        return $this->valueOfTax;
+        return $this->value;
     }
 }
