@@ -30,11 +30,8 @@ class OperationService implements OperationServiceInterface
                 $this->calculatorAveragePrice->lessQuantityActions($operationEntity);
             }
 
-            $tax[] = $this->calculatorTax->calculate($operationEntity, $averagePrice);
+            $tax[] = $this->calculatorTax->calculate($operationEntity, $averagePrice)->getTax();
         }
-
-        print_r($tax);
-        exit;
 
         return $tax;
     }

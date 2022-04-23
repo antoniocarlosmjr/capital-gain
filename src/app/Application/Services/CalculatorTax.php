@@ -65,13 +65,15 @@ class CalculatorTax implements CalculatorTaxInterface
 
             $profit = $totalOperation - $totalOperationWithAveragePrice;
 
-            if ($this->totalPreviousLosses > 0) {
-                $liquidProfit = $profit - $this->totalPreviousLosses;
+            if ($this->totalPreviousLosses > $profit) {
                 $this->totalPreviousLosses -= $profit;
+                return new TaxEntity(0);
+            }
 
-                if ($liquidProfit > 0) {
-                    return new TaxEntity($liquidProfit * self::PERCENT_TAX_FOR_OPERATION);
-                }
+            $profit -= $this->totalPreviousLosses;
+
+            if ($profit > 0) {
+                return new TaxEntity($profit * self::PERCENT_TAX_FOR_OPERATION);
             }
         }
 
