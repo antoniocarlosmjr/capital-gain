@@ -18,9 +18,9 @@ class CalculatorAveragePrice implements CalculatorAveragePriceInterface
 
     public function calculate(OperationEntity $operationEntity): float
     {
-        $divisor = (($this->quantityActions * $this->averagePrice) + $operationEntity->getTotalOperation());
-        $dividend = ($this->quantityActions + $operationEntity->getQuantity());
-        $this->averagePrice =  round(($divisor / $dividend), 2);
+        $dividend = (($this->quantityActions * $this->averagePrice) + $operationEntity->getTotalOperation());
+        $divisor = ($this->quantityActions + $operationEntity->getQuantity());
+        $this->averagePrice =  round(($dividend / $divisor), 2);
         $this->quantityActions += $operationEntity->getQuantity();
 
         return $this->averagePrice;
