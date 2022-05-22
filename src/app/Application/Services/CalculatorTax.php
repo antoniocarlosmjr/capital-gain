@@ -62,17 +62,18 @@ class CalculatorTax implements CalculatorTaxInterface
             $totalOperation = $this->operationEntity->getTotalOperation();
             $totalOperationWithAveragePrice = ($this->operationEntity->getQuantity() * $this->averagePrice);
 
-            $profit = $totalOperation - $totalOperationWithAveragePrice;
+            $profitTotal = $totalOperation - $totalOperationWithAveragePrice;
 
-            if ($this->totalPreviousLosses >= $profit) {
-                $this->totalPreviousLosses -= $profit;
+            if ($this->totalPreviousLosses >= $profitTotal) {
+                $this->decreaseTotalLoss($profitTotal);
                 return new TaxEntity(0);
             }
 
-            $profit -= $this->totalPreviousLosses;
+            $profitOperation = $profitTotal - $this->totalPreviousLosses;
+            $this->decreaseTotalLoss($profitTotal);
 
-            if ($profit > 0) {
-                return new TaxEntity($profit * self::PERCENT_TAX_FOR_OPERATION);
+            if ($profitOperation > 0) {
+                return new TaxEntity($profitOperation * self::PERCENT_TAX_FOR_OPERATION);
             }
         }
 
@@ -95,5 +96,14 @@ class CalculatorTax implements CalculatorTaxInterface
         $totalOperation = $this->operationEntity->getTotalOperation();
 
         $this->totalPreviousLosses += ($totalOperationWithAveragePrice - $totalOperation);
+    }
+
+    private function decreaseTotalLoss(float $valueToDecrease): void
+    {
+        if ($valueToDecrease >= $this->totalPreviousLosses) {
+            $this->totalPreviousLosses = 0;
+        } else {
+            $this->totalPreviousLosses -= $valueToDecrease;
+        }
     }
 }

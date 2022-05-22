@@ -1,0 +1,73 @@
+Example inputs:
+
+Example with previous loss: - OK
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000}, - Tax: 0
+{"operation":"sell", "unit-cost":5.00, "quantity": 5000}, - Loss 25k - Tax: 0
+{"operation":"sell", "unit-cost":20.00, "quantity": 3000}, - Profit 30k - Tax: 1k
+{"operation":"sell", "unit-cost":20.00, "quantity": 2000}] - Profit 20k - Tax: 4k
+
+Exemplo case 1 PDF: - OK
+[{"operation":"buy", "unit-cost":10.00, "quantity": 100},{"operation":"sell", "unit-cost":15.00, "quantity": 50},{"operation":"sell", "unit-cost":15.00, "quantity": 50}]
+
+[{"operation":"buy", "unit-cost":10.00, "quantity": 100}, - tax 0
+{"operation":"sell", "unit-cost":15.00, "quantity": 50}, - tax 0
+{"operation":"sell", "unit-cost":15.00, "quantity": 50}] - tax 0
+
+Example case 2 PDF: - OK
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000},{"operation":"sell", "unit-cost":20.00, "quantity": 5000},{"operation":"sell", "unit-cost":5.00, "quantity": 5000}]
+
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000}, - tax 0
+{"operation":"sell", "unit-cost":20.00, "quantity": 5000}, tax 10k
+{"operation":"sell", "unit-cost":5.00, "quantity": 5000}] - tax 0
+
+Example case 3 PDF: - OK
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000},{"operation":"sell", "unit-cost":5.00, "quantity": 5000},{"operation":"sell", "unit-cost":20.00, "quantity": 3000}]
+
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000}, - tax 0
+{"operation":"sell", "unit-cost":5.00, "quantity": 5000}, Loss 25k - tax 0
+{"operation":"sell", "unit-cost":20.00, "quantity": 3000}] - tax 1k
+
+Example case 4 PDF: - OK
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000},{"operation":"buy", "unit-cost":25.00, "quantity": 5000},{"operation":"sell", "unit-cost":15.00, "quantity": 10000}]
+
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000}, - tax 0
+{"operation":"buy", "unit-cost":25.00, "quantity": 5000}, - tax 0
+{"operation":"sell", "unit-cost":15.00, "quantity": 10000}] - tax 0
+
+Example case 5 PDF: - OK
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000},{"operation":"buy", "unit-cost":25.00, "quantity": 5000},{"operation":"sell", "unit-cost":15.00, "quantity": 10000},{"operation":"sell", "unit-cost":25.00, "quantity": 5000}]
+
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000}, - tax 0
+{"operation":"buy", "unit-cost":25.00, "quantity": 5000}, - tax 0
+{"operation":"sell", "unit-cost":15.00, "quantity": 10000}, - tax 0
+{"operation":"sell", "unit-cost":25.00, "quantity": 5000}] - tax 10k
+
+Example case 6 PDF: - OK
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000},{"operation":"sell", "unit-cost":2.00, "quantity": 5000},{"operation":"sell", "unit-cost":20.00, "quantity": 2000},{"operation":"sell", "unit-cost":20.00, "quantity": 2000},{"operation":"sell", "unit-cost":25.00, "quantity": 1000}]
+
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000}, - tax 0
+{"operation":"sell", "unit-cost":2.00, "quantity": 5000}, - tax 0
+{"operation":"sell", "unit-cost":20.00, "quantity": 2000}, - tax 0
+{"operation":"sell", "unit-cost":20.00, "quantity": 2000}, - tax 0
+{"operation":"sell", "unit-cost":25.00, "quantity": 1000}] - tax 3k
+
+Example case 7 PDF: - OK
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000},{"operation":"sell", "unit-cost":2.00, "quantity": 5000},{"operation":"sell", "unit-cost":20.00, "quantity": 2000},{"operation":"sell", "unit-cost":20.00, "quantity": 2000},{"operation":"sell", "unit-cost":25.00, "quantity": 1000},{"operation":"buy", "unit-cost":20.00, "quantity": 10000},{"operation":"sell", "unit-cost":15.00, "quantity": 5000},{"operation":"sell", "unit-cost":30.00, "quantity": 4350},{"operation":"sell", "unit-cost":30.00, "quantity": 650}]
+
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000}, - tax 0
+{"operation":"sell", "unit-cost":2.00, "quantity": 5000}, - tax 0
+{"operation":"sell", "unit-cost":20.00, "quantity": 2000}, - tax 0
+{"operation":"sell", "unit-cost":20.00, "quantity": 2000}, - tax 0
+{"operation":"sell", "unit-cost":25.00, "quantity": 1000}, - tax 3k
+{"operation":"buy", "unit-cost":20.00, "quantity": 10000}, - tax 0
+{"operation":"sell", "unit-cost":15.00, "quantity": 5000}, - tax 0
+{"operation":"sell", "unit-cost":30.00, "quantity": 4350}, - tax 3,7k
+{"operation":"sell", "unit-cost":30.00, "quantity": 650}] - tax 0
+
+Example case 8 PDF: - OK
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000},{"operation":"sell", "unit-cost":50.00, "quantity": 10000},{"operation":"buy", "unit-cost":20.00, "quantity": 10000},{"operation":"sell", "unit-cost":50.00, "quantity": 10000}]
+
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000}, - tax 0
+{"operation":"sell", "unit-cost":50.00, "quantity": 10000}, - tax 80k
+{"operation":"buy", "unit-cost":20.00, "quantity": 10000}, - tax 0
+{"operation":"sell", "unit-cost":50.00, "quantity": 10000}] - taxa 60k

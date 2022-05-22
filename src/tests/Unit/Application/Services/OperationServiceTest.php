@@ -223,4 +223,53 @@ class OperationServiceTest extends TestCase
 
         self::assertEquals($expected, $returnTaxes);
     }
+
+    public function testWithPreviousLess()
+    {
+        $operationList = new OperationArrayList();
+        $operationList->addOperation(
+            new OperationEntity(
+                TypesOperationEnum::BUY,
+                10.00,
+                10000
+            )
+        );
+
+        $operationList->addOperation(
+            new OperationEntity(
+                TypesOperationEnum::SELL,
+                5.00,
+                5000
+            )
+        );
+
+        $operationList->addOperation(
+            new OperationEntity(
+                TypesOperationEnum::SELL,
+                20.00,
+                3000
+            )
+        );
+
+        $operationList->addOperation(
+            new OperationEntity(
+                TypesOperationEnum::SELL,
+                20.00,
+                2000
+            )
+        );
+
+        $service = new OperationService(
+            new CalculatorAveragePrice(),
+            new CalculatorTax()
+        );
+
+        $taxArrayList = $service->calculateTaxOperations($operationList);
+        $taxTransform = new TaxTransformer();
+        $returnTaxes = $taxTransform->transformTax($taxArrayList);
+
+        $expected = [['tax' => 0], ['tax' => 0], ['tax' => 1000], ['tax' => 4000]];
+
+        self::assertEquals($expected, $returnTaxes);
+    }
 }
