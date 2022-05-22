@@ -3,6 +3,7 @@
 namespace App\Application\Services;
 
 use App\Application\Services\Contracts\CalculatorAveragePriceInterface;
+use App\Domain\Entities\Operation\OperationArrayList;
 use App\Domain\Entities\Operation\OperationEntity;
 
 class CalculatorAveragePrice implements CalculatorAveragePriceInterface
@@ -24,6 +25,17 @@ class CalculatorAveragePrice implements CalculatorAveragePriceInterface
         $this->quantityActions += $operationEntity->getQuantity();
 
         return $this->averagePrice;
+    }
+
+    public function getAveragePrice(OperationArrayList $listOperation): array
+    {
+        $listAveragePriceForTicker = [];
+        foreach ($listOperation as $operationEntity) {
+            $listAveragePriceForTicker[$operationEntity->getTicker()]['averagePrice']
+            $listAveragePriceForTicker[$operationEntity->getTicker()]['averagePrice']
+            $listAveragePriceForTicker[$operationEntity->getTicker()] = $this->calculate($operationEntity);
+        }
+        return $listAveragePriceForTicker;
     }
 
     public function lessQuantityActions(OperationEntity $operationEntity): void

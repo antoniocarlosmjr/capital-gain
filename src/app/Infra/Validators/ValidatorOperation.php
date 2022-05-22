@@ -3,9 +3,11 @@
 namespace App\Infra\Validators;
 
 use App\Enumerators\TypesOperationEnum;
+use App\Enumerators\TypesTickerEnum;
 use App\Exceptions\OperationInvalidException;
 use App\Exceptions\OperationQuantityInvalidException;
 use App\Exceptions\OperationUnitCostInvalidException;
+use App\Exceptions\TickerInvalidException;
 
 class ValidatorOperation
 {
@@ -17,6 +19,7 @@ class ValidatorOperation
         $this->validateOperation($operation['operation']);
         $this->validateUnitCost($operation['unit-cost']);
         $this->validateQuantity($operation['quantity']);
+        $this->validateTicker($operation['ticker']);
     }
 
     private function validateOperation(string $operation): void
@@ -39,6 +42,15 @@ class ValidatorOperation
     {
         if ($quantity <= self::NUM_MIN_QUANTITY) {
             throw new OperationQuantityInvalidException('Quantity cannot be negative');
+        }
+    }
+
+    private function validateTicker(string $ticker): void
+    {
+        $tickers = TypesTickerEnum::getFields();
+
+        if (!in_array($ticker, $tickers)) {
+            throw new TickerInvalidException();
         }
     }
 }

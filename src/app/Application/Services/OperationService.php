@@ -21,8 +21,12 @@ class OperationService implements OperationServiceInterface
     public function calculateTaxOperations(OperationArrayList $listOperation): TaxArrayList
     {
         $arrayListTax = new TaxArrayList();
-        $averagePrice = 0;
+        $listAveragePriceForTicker = $this->calculatorAveragePrice->getAveragePrice($listOperation);
+
         foreach ($listOperation->getAllOperations() as $operationEntity) {
+
+            $averagePrice = $listAveragePriceForTicker[$operationEntity->getTicker()];
+
             if ($operationEntity->getType() == TypesOperationEnum::BUY) {
                 $averagePrice = $this->calculatorAveragePrice->calculate($operationEntity);
             }

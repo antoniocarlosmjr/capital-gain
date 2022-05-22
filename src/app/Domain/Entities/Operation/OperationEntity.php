@@ -7,7 +7,8 @@ class OperationEntity
     public function __construct(
         private string $type,
         private float $unitCost,
-        private int $quantity
+        private int $quantity,
+        private string $ticker
     )
     {
     }
@@ -30,5 +31,10 @@ class OperationEntity
     public function getTotalOperation(): float
     {
         return $this->unitCost * $this->quantity;
+    }
+
+    public function getTicker(): string
+    {
+        return $this->ticker;
     }
 }

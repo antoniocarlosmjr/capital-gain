@@ -18,7 +18,8 @@ class OperationFactory
             $operationEntity = new OperationEntity(
                 $value['operation'],
                 $value['unit-cost'],
-                $value['quantity']
+                $value['quantity'],
+                $value['ticker']
             );
             $operationArrayList->addOperation($operationEntity);
         }
